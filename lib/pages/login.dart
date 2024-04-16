@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import './cadastro.dart';
 import '../components/input.dart';
 import '../components/button.dart';
 import '../components/app_bar.dart';
 import '../components/drawer.dart';
 import '../components/bottom_navigation.dart';
+import '../util/valida_login.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -28,6 +28,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  String email = "";
+  String senha = "";
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,14 +43,14 @@ class _LoginState extends State<Login> {
             color: Colors.white.withOpacity(0.8),
             borderRadius: BorderRadius.circular(20.0),
           ),
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              InputTextField(label: "Seu melhor e-mail", maxLength: 70),
-              InputTextField(label: "Informe sua senha", maxLength: 10, isPassword: true,),
-              Button(title: "Login"),
-              SignUpText(),
+              InputTextField(label: "Seu melhor e-mail", maxLength: 70, onChanged: (String value) => setState(() => email = value)),
+              InputTextField(label: "Informe sua senha", maxLength: 10, isPassword: true, onChanged: (String value) => setState(() => senha = value)),
+              Button(title: "Login", onPressed: () { validaLogin(context, email, senha); }),
+              const SignUpText(),
             ],
           ),
         ),
@@ -67,7 +70,7 @@ class SignUpText extends StatelessWidget {
         const Text("Primeiro Acesso? ", style: TextStyle(color: Colors.grey)),
         TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CadastroPage()));
+            Navigator.of(context).pushNamed("/cadastro");
           },
           child: const Text("Faça seu cadastro", style: TextStyle(color: Colors.blue)),
         ),

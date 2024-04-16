@@ -35,30 +35,32 @@ class _CadastroState extends State<Cadastro> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[100],
+    return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.8),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const InputTextField(label: "Nome", maxLength: 20),
-            const InputTextField(label: "Data de Nascimento", maxLength: 10),
-            const InputTextField(label: "E-mail", maxLength: 70),
-            const InputTextField(label: "Senha", isPassword: true, maxLength: 20),
-            ListRadio(title: "Gênero:", value: genero, onChanged: (String? value) => setState(() => genero = value)),
-            ListSwitch(
-              title: "Notificações:",
-              label1: 'E-mail', value1: notifyEmail, onChanged1: (bool value) => setState(() => notifyEmail = value),
-              label2: 'Celular', value2: notifyCelular, onChanged2: (bool value) => setState(() => notifyCelular = value),
-            ),
-            const Button(title: "Registrar"),
-            SliderDouble(title: "Tamanho da fonte:", value: font, min: 10, max: 30, divisions: 10, onChanged: (double value) => setState(() => font = value)),
-          ],
+        color: Colors.grey[100],
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.8),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const InputTextField(label: "Nome", maxLength: 20),
+              const InputTextField(label: "Data de Nascimento", maxLength: 10),
+              const InputTextField(label: "E-mail", maxLength: 70),
+              const InputTextField(label: "Senha", isPassword: true, maxLength: 20),
+              ListRadio(title: "Gênero:", value: genero, onChanged: (String? value) => setState(() => genero = value)),
+              ListSwitch(
+                title: "Notificações:",
+                label1: 'E-mail', value1: notifyEmail, onChanged1: (bool value) => setState(() => notifyEmail = value),
+                label2: 'Celular', value2: notifyCelular, onChanged2: (bool value) => setState(() => notifyCelular = value),
+              ),
+              const Button(title: "Registrar"),
+              SliderDouble(title: "Tamanho da fonte:", value: font, min: 10, max: 30, divisions: 10, onChanged: (double value) => setState(() => font = value)),
+            ],
+          ),
         ),
       ),
     );

@@ -4,16 +4,18 @@ class InputTextField extends StatefulWidget {
   final String label;
   final bool isPassword;
   final int? maxLength;
+  final ValueChanged<String>? onChanged;
 
   const InputTextField({
     super.key,
     required this.label,
     this.isPassword = false,
     this.maxLength,
+    this.onChanged,
   });
 
   @override
-  _InputTextFieldState createState() => _InputTextFieldState();
+  State<InputTextField> createState() => _InputTextFieldState();
 }
 
 class _InputTextFieldState extends State<InputTextField> {
@@ -39,6 +41,7 @@ class _InputTextFieldState extends State<InputTextField> {
         ),
         maxLength: widget.maxLength,
         obscureText: widget.isPassword && obscureText,
+        onChanged: widget.onChanged,
       ),
     );
   }
